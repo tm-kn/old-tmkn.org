@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'tmknorg.home',
 ]
 
 MIDDLEWARE = [
@@ -164,3 +166,11 @@ if os.environ.get('ENABLE_BASIC_AUTH', '').lower().strip() == 'true':
         BASIC_AUTH_WHITELISTED_HTTP_HOSTS = (
             os.environ['BASIC_AUTH_WHITELISTED_HTTP_HOSTS']
         )
+
+
+# Front-end cache
+
+if 'FRONTEND_CACHE_CONTROL_S_MAX_AGE' in os.environ:
+    FRONTEND_CACHE_CONTROL_S_MAX_AGE = (
+        os.environ['FRONTEND_CACHE_CONTROL_S_MAX_AGE']
+    )

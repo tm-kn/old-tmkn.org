@@ -14,8 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
 from django.urls import path
+from django.views.decorators.cache import cache_control
+from tmknorg.home.views import HomeView
+
+
+frontendcache = cache_control(
+    s_max_age=getattr(settings, 'FRONTEND_CACHE_CONTROL_S_MAX_AGE', 60 * 60)
+)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', frontendcache(HomeView.as_view()))
 ]
