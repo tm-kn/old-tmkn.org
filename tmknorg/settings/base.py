@@ -81,6 +81,20 @@ DATABASES = {
     'default': dj_database_url.config(conn_max_age=600),
 }
 
+
+# Cache
+# https://docs.djangoproject.com/en/2.0/topics/cache/
+
+if 'REDIS_URL' in os.environ:
+    # https://niwinz.github.io/django-redis/latest/
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": os.environ['REDIS_URL'],
+        }
+    }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
