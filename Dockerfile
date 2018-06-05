@@ -3,7 +3,7 @@ FROM python:3.6.5-stretch
 WORKDIR /app
 
 ENV PYTHONUNBUFFERED=1 \
-    DJANGO_SETTINGS_MODULE={{ project_name }}.settings.production \
+    DJANGO_SETTINGS_MODULE=tmknorg.settings.production \
     PYTHONPATH=/app \
     WEB_CONCURRENCY=3 \
     PORT=8000 \
@@ -24,4 +24,4 @@ USER tmknorg
 
 RUN SECRET_KEY=none django-admin collectstatic --noinput --clear
 
-CMD gunicorn {{ project_name }}.wsgi:application
+CMD gunicorn tmknorg.wsgi:application
