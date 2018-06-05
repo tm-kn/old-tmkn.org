@@ -47,6 +47,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'tmknorg.urls'
@@ -114,3 +116,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# http://whitenoise.evans.io/en/stable/django.html#add-compression-and-caching-support
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+# Security settings
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SECURE_SSL_REDIRECT = (
+    os.environ.get('SECURE_SSL_REDIRECT', 'false').strip().lower() == 'true'
+)
+
+SECURE_BROWSER_XSS_FILTER = (
+    os.environ.get('SECURE_BROWSER_XSS_FILTER',
+                   'false').strip().lower() == 'true'
+)
+
+SECURE_CONTENT_TYPE_NOSNIFF = (
+    os.environ.get('SECURE_CONTENT_TYPE_NOSNIFF',
+                   'false').strip().lower() == 'true'
+)
+
+SECURE_HSTS_SECONDS = int(os.environ.get('SECURE_HSTS_SECONDS', 0))
