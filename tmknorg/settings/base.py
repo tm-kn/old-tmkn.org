@@ -143,3 +143,24 @@ SECURE_CONTENT_TYPE_NOSNIFF = (
 )
 
 SECURE_HSTS_SECONDS = int(os.environ.get('SECURE_HSTS_SECONDS', 0))
+
+
+# Basic auth
+# https://gitlab.com/tmkn/django-basic-auth-ip-whitelist
+
+if os.environ.get('ENABLE_BASIC_AUTH', '').lower().strip() == 'true':
+    MIDDLEWARE += [
+        'baipw.middleware.BasicAuthIPWhitelistMiddleware'
+    ]
+    if 'BASIC_AUTH_LOGIN' in os.environ:
+        BASIC_AUTH_LOGIN = os.environ['BASIC_AUTH_LOGIN']
+    if 'BASIC_AUTH_PASSWORD' in os.environ:
+        BASIC_AUTH_PASSWORD = os.environ['BASIC_AUTH_PASSWORD']
+    if 'BASIC_AUTH_WHITELISTED_IP_NETWORKS' in os.environ:
+        BASIC_AUTH_WHITELISTED_IP_NETWORKS = (
+            os.environ['BASIC_AUTH_WHITELISTED_IP_NETWORKS']
+        )
+    if 'BASIC_AUTH_WHITELISTED_HTTP_HOSTS' in os.environ:
+        BASIC_AUTH_WHITELISTED_HTTP_HOSTS = (
+            os.environ['BASIC_AUTH_WHITELISTED_HTTP_HOSTS']
+        )
