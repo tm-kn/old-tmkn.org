@@ -5,4 +5,4 @@ brotlipy==0.7.0
 psycopg2==2.7.4
 django-redis==4.9.0
 -e git+https://gitlab.com/tmkn/django-basic-auth-ip-whitelist.git@master#egg=django-basic-auth-ip-whitelist
-
+django-referrer-policy==1.0

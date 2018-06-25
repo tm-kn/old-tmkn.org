@@ -1,1 +1,53 @@
-Hello world
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'icons/favicon.ico' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/favicon.ico' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'icons/192x192.png' %}">
+    <title>tmkn.org</title>
+</head>
+<body>
+    <p>hello world</p>
+    <h1>tmkn's homepage</h1>
+    <h2>contact</h2>
+    <ul>
+        <li>email - <a href="mailto:me@tmkn.org">me@tmkn.org</a></li>
+        <li>gitlab - <a href="https://gitlab.com/tmkn">@tmkn</a></li>
+        <li>github - <a href="https://github.com/tm-kn">@tm-kn</a></li>
+        <li>mastodon - <a href="https://mastodon.social/@tmkn">@tmkn</a></li>
+        <li>twitter - <a href="https://twitter.com/sgttomtom">@sgttomtom</a></li>
+    </ul>
+
+    <h2>general info</h2>
+    <ul>
+        <li>python, linux, django, vim, tmux, i3wm, debian, arch, thinkpad</li>
+        <li>works at <a href="https://torchbox.com">torchbox</a></li>
+        <li>studies software sngineering</li>
+        <li>
+            <a href="https://gitlab.com/tmkn/dotfiles">
+                dotfiles for my humble rice
+            </a>
+        </li>
+        <li><a href="{% url 'ssh-key' %}">ssh key</a></li>
+        <li><a href="{% url 'pgp-key' %}">pgp key</a></li>
+    </ul>
+
+    <h2>projects</h2>
+    <ul>
+        <li>
+            <a href="https://gitlab.com/tmkn/django-basic-auth-ip-whitelist/">
+                django-basic-auth-ip-whitelist
+            </a> - put your django app behind basic auth with ip whitelisting
+        </li>
+        <li>
+            <a href="https://github.com/torchbox/buckup">
+                buckup
+            </a> - creating aws s3 buckets for humans
+        </li>
+    </ul>
+</body>
+</html>

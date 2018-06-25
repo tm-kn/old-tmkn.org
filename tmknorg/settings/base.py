@@ -16,8 +16,8 @@ import dj_database_url
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_referrer_policy.middleware.ReferrerPolicyMiddleware',
 
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
@@ -135,6 +136,10 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_DIR, 'static'),
+]
+
 # http://whitenoise.evans.io/en/stable/django.html#add-compression-and-caching-support
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -150,15 +155,17 @@ SECURE_SSL_REDIRECT = (
 
 SECURE_BROWSER_XSS_FILTER = (
     os.environ.get('SECURE_BROWSER_XSS_FILTER',
-                   'false').strip().lower() == 'true'
+                   'true').strip().lower() == 'true'
 )
 
 SECURE_CONTENT_TYPE_NOSNIFF = (
     os.environ.get('SECURE_CONTENT_TYPE_NOSNIFF',
-                   'false').strip().lower() == 'true'
+                   'true').strip().lower() == 'true'
 )
 
 SECURE_HSTS_SECONDS = int(os.environ.get('SECURE_HSTS_SECONDS', 0))
+
+REFERRER_POLICY = 'same-origin'
 
 
 # Basic auth

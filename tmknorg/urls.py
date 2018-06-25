@@ -17,12 +17,11 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import path
 from django.views.decorators.cache import cache_control
-from tmknorg.home.views import HomeView
+from tmknorg.home.views import FaviconView, HomeView, PGPKeyView, SSHKeyView
 
 
 frontendcache = cache_control(
     public=True,
-    maxage=int(getattr(settings, 'FRONTEND_CACHE_CONTROL_MAXAGE', 10 * 60)),
     s_maxage=int(getattr(settings, 'FRONTEND_CACHE_CONTROL_S_MAXAGE',
                          4 * 60 * 60)),
     stale_while_revalidate=int(getattr(
@@ -34,6 +33,9 @@ frontendcache = cache_control(
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', frontendcache(HomeView.as_view()))
+    # path('admin/', admin.site.urls),
+    path('', frontendcache(HomeView.as_view()), name='home'),
+    path('id_rsa.pub', frontendcache(SSHKeyView.as_view()), name='ssh-key'),
+    path('public.asc', frontendcache(PGPKeyView.as_view()), name='pgp-key'),
+    path('favicon.ico', FaviconView.as_view(), name='favicon'),
 ]
