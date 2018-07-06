@@ -170,6 +170,24 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
+# Media
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
+
+# S3 media
+
+if 'AWS_STORAGE_BUCKET' in os.environ:
+    INSTALLED_APPS.append('storages')
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    AWS_STORAGE_BUCKET = os.environ['AWS_STORAGE_BUCKET']
+    AWS_S3_FILE_OVERWRITE = False
+    if 'AWS_S3_CUSTOM_DOMAIN' in os.environ:
+        AWS_S3_CUSTOM_DOMAIN = os.environ['AWS_S3_CUSTOM_DOMAIN']
+
+
 # Security settings
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
