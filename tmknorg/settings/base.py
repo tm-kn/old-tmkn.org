@@ -38,6 +38,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail.core',
+
+    'modelcluster',
+    'taggit',
+
     'tmknorg.home',
 ]
 
@@ -50,6 +65,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_referrer_policy.middleware.ReferrerPolicyMiddleware',
+
+    'wagtail.core.middleware.SiteMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
@@ -195,3 +213,7 @@ if 'FRONTEND_CACHE_CONTROL_S_MAX_AGE' in os.environ:
     FRONTEND_CACHE_CONTROL_S_MAX_AGE = (
         os.environ['FRONTEND_CACHE_CONTROL_S_MAX_AGE']
     )
+
+
+# Wagtail settings
+WAGTAIL_SITE_NAME = 'tmkn'
