@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'taggit',
 
     'tmknorg.core',
+    'tmknorg.documents',
     'tmknorg.home',
     'tmknorg.blog',
     'tmknorg.images',
@@ -225,3 +226,5 @@ if 'FRONTEND_CACHE_CONTROL_S_MAX_AGE' in os.environ:
 WAGTAIL_SITE_NAME = 'tmkn'
 
 WAGTAILIMAGES_IMAGE_MODEL = 'images.CustomImage'
+
+WAGTAILDOCS_DOCUMENT_MODEL = 'documents.CustomDocument'
