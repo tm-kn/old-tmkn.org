@@ -276,7 +276,7 @@ if 'FRONTEND_CACHE_CLOUDFLARE_TOKEN' in os.environ:
             ),
             'EMAIL': os.environ['FRONTEND_CACHE_CLOUDFLARE_EMAIL'],
             'TOKEN': os.environ['FRONTEND_CACHE_CLOUDFLARE_TOKEN'],
-            'ZONEID': os.environ['FRONTEND_CACHE_ZONEID'],
+            'ZONEID': os.environ['FRONTEND_CACHE_CLOUDFLARE_ZONEID'],
         },
     }
 
