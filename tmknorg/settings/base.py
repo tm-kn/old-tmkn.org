@@ -182,7 +182,7 @@ MEDIA_URL = '/media/'
 if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
     INSTALLED_APPS.append('storages')
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    AWS_STORAGE_BUCKET = os.environ['AWS_STORAGE_BUCKET_NAME']
+    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
     AWS_S3_FILE_OVERWRITE = False
     if 'AWS_S3_CUSTOM_DOMAIN' in os.environ:
         AWS_S3_CUSTOM_DOMAIN = os.environ['AWS_S3_CUSTOM_DOMAIN']
