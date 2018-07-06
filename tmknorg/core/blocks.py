@@ -11,3 +11,4 @@ class BodyBlock(blocks.StreamBlock):
     paragraph = blocks.RichTextBlock()
     h2 = blocks.CharBlock()
     h3 = blocks.CharBlock()
+    image = ImageBlock()
