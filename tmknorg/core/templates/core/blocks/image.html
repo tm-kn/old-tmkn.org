@@ -1,0 +1,12 @@
+{% load wagtailimages_tags %}
+
+{% image value.image width-800 as rendition %}
+
+{% if rendition %}
+<div>
+    {{ rendition.img_tag }}
+    {% if value.caption %}
+        <p>{{ value.caption }}</p>
+    {% endif %}
+</div>
+{% endif %}
