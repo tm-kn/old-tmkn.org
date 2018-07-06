@@ -9,9 +9,8 @@ from .models import BlogIndex, BlogPage
 
 def blog_page_changed(blog_page):
     batch = PurgeBatch()
-    for blog_index in BlogIndex.objects.live():
-        if blog_page in blog_index.get_children():
-            batch.add_page(blog_index)
+    for index in BlogIndex.objects.live().ancestor_of(blog_page):
+        batch.add_page(index)
 
     batch.purge()
 
