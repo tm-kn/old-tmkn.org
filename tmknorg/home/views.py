@@ -1,11 +1,7 @@
 from django.http import HttpResponse
 from django.templatetags.static import static
 from django.views import View
-from django.views.generic.base import RedirectView, TemplateView
-
-
-class HomeView(TemplateView):
-    template_name = 'home/home.html'
+from django.views.generic.base import RedirectView
 
 
 class FaviconView(RedirectView):

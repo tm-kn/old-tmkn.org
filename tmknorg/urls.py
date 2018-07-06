@@ -10,7 +10,7 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.core.models import Page
 from wagtail.utils.urlpatterns import decorate_urlpatterns
 
-from tmknorg.home.views import FaviconView, HomeView, PGPKeyView, SSHKeyView
+from tmknorg.home.views import FaviconView, PGPKeyView, SSHKeyView
 
 
 frontendcache = cache_control(
@@ -26,7 +26,6 @@ frontendcache = cache_control(
 
 
 urlpatterns = decorate_urlpatterns([
-    path('', HomeView.as_view(), name='home'),
     path('id_rsa.pub', frontendcache(SSHKeyView.as_view()), name='ssh-key'),
     path('public.asc', frontendcache(PGPKeyView.as_view()), name='pgp-key'),
     path('favicon.ico', FaviconView.as_view(), name='favicon'),
@@ -34,8 +33,8 @@ urlpatterns = decorate_urlpatterns([
 
 urlpatterns = chain(urlpatterns, [
     path('cms/', include(wagtailadmin_urls)),
-    path('blog/', include(wagtail_urls)),
     path('documents/', include(wagtaildocs_urls)),
+    path('', include(wagtail_urls)),
 ])
 
 urlpatterns = list(urlpatterns)

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+<h1>{{ page }}</h1>
+<ul>
+{% for blog_page in blog_pages %}
+    <li>
+        <a href="{% pageurl blog_page %}">{{ blog_page }}</a> - {{ blog_page.first_published_at|date }}
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

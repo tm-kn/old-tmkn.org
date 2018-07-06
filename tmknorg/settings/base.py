@@ -53,8 +53,11 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
 
+    'tmknorg.core',
     'tmknorg.home',
+    'tmknorg.blog',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,7 +80,9 @@ ROOT_URLCONF = 'tmknorg.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(PROJECT_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

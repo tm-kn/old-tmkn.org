@@ -1,0 +1,24 @@
+{% load static navigation_tags wagtailcore_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'icons/favicon.ico' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/favicon.ico' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'icons/192x192.png' %}">
+    <title>tmkn.org</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            {% navigation_items as navigation_items %}
+            {% for item in navigation_items %}
+                <li><a href="{% pageurl item %}">{{ item }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+    {% block content %}{% endblock %}
+</body>
+</html>
