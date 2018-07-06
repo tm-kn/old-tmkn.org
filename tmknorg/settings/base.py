@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'tmknorg.core',
     'tmknorg.home',
     'tmknorg.blog',
+    'tmknorg.images',
 ]
 
 
@@ -222,3 +223,5 @@ if 'FRONTEND_CACHE_CONTROL_S_MAX_AGE' in os.environ:
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = 'tmkn'
+
+WAGTAILIMAGES_IMAGE_MODEL = 'images.CustomImage'
