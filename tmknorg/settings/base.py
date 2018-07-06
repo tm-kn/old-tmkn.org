@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'wagtail.contrib.forms',
+    'wagtail.contrib.frontend_cache',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
     'wagtail.sites',
@@ -267,6 +268,17 @@ if 'FRONTEND_CACHE_CONTROL_S_MAX_AGE' in os.environ:
         os.environ['FRONTEND_CACHE_CONTROL_S_MAX_AGE']
     )
 
+if 'FRONTEND_CACHE_CLOUDFLARE_TOKEN' in os.environ:
+    WAGTAILFRONTENDCACHE = {
+        'cloudflare': {
+            'BACKEND': (
+                'wagtail.contrib.frontend_cache.backends.CloudflareBackend'
+            ),
+            'EMAIL': os.environ['FRONTEND_CACHE_CLOUDFLARE_EMAIL'],
+            'TOKEN': os.environ['FRONTEND_CACHE_CLOUDFLARE_TOKEN'],
+            'ZONEID': os.environ['FRONTEND_CACHE_ZONEID'],
+        },
+    }
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = 'tmkn'
