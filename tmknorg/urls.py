@@ -5,9 +5,10 @@ from django.urls import include, path
 from django.views.decorators.cache import cache_control
 
 from wagtail.admin import urls as wagtailadmin_urls
-from wagtail.documents import urls as wagtaildocs_urls
+from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
 from wagtail.core.models import Page
+from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.utils.urlpatterns import decorate_urlpatterns
 
 from tmknorg.home.views import FaviconView, PGPKeyView, SSHKeyView
@@ -26,9 +27,10 @@ frontendcache = cache_control(
 
 
 urlpatterns = decorate_urlpatterns([
-    path('id_rsa.pub', frontendcache(SSHKeyView.as_view()), name='ssh-key'),
-    path('public.asc', frontendcache(PGPKeyView.as_view()), name='pgp-key'),
+    path('id_rsa.pub', SSHKeyView.as_view(), name='ssh-key'),
+    path('public.asc', PGPKeyView.as_view(), name='pgp-key'),
     path('favicon.ico', FaviconView.as_view(), name='favicon'),
+    path('sitemap.xml', sitemap),
 ], frontendcache)
 
 urlpatterns = chain(urlpatterns, [
