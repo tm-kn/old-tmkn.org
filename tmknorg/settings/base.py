@@ -232,6 +232,33 @@ if os.environ.get('ENABLE_BASIC_AUTH', '').lower().strip() == 'true':
         )
 
 
+# Logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'level': 'INFO',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO'
+        },
+        'wagtail': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'tmknorg': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        }
+    },
+}
+
 # Front-end cache
 
 if 'FRONTEND_CACHE_CONTROL_S_MAX_AGE' in os.environ:
