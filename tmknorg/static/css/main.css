@@ -1,0 +1,17 @@
+.primary-navigation {
+    font-size: 18px;
+    border-bottom: 1px black solid;
+}
+
+.primary-navigation li {
+    float: left;
+}
+.primary-navigation li + li:before {
+    content: "/";
+    padding: 5px;
+}
+
+.primary-navigation ul {
+    overflow: hidden;
+    list-style-type: none;
+}
