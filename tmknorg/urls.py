@@ -1,8 +1,9 @@
 from itertools import chain
 
 from django.conf import settings
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.views.decorators.cache import cache_control
+from django.views.static import serve
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
@@ -32,6 +33,15 @@ urlpatterns = decorate_urlpatterns([
     path('favicon.ico', FaviconView.as_view(), name='favicon'),
     path('sitemap.xml', sitemap),
 ], frontendcache)
+
+
+if settings.DEBUG:
+    urlpatterns += [
+        re_path(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]
+
 
 urlpatterns = chain(urlpatterns, [
     path('cms/', include(wagtailadmin_urls)),
