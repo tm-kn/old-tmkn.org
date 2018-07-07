@@ -23,6 +23,9 @@ class PageChildrenFeed(Feed):
     def item_description(self, item):
         return item.get_feed_content()
 
+    def item_pubdate(self, item):
+        return item.first_published_at
+
 
 class PageFeed(RoutablePageMixin):
     def get_feed_items(self):
