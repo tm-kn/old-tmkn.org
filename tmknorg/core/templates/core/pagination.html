@@ -1,6 +1,6 @@
 {% if objects.paginator.num_pages > 1 %}
-<div class="pagination">
-    <span class="step-links">
+<nav aria-label="pagination">
+    <span>
         {% if objects.has_previous %}
             <a href="?page=1" rel="first">&laquo; first</a>
             <a href="?page={{ objects.previous_page_number }}" rel="prev">
@@ -8,7 +8,7 @@
             </a>
         {% endif %}
 
-        <span class="current">
+        <span>
             Page {{ objects.number }} of {{ objects.paginator.num_pages }}.
         </span>
 
@@ -19,5 +19,5 @@
             </a>
         {% endif %}
     </span>
-</div>
+</nav>
 {% endif %}
