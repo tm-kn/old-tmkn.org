@@ -3,10 +3,10 @@
 {% image value.image width-800 as rendition %}
 
 {% if rendition %}
-<div>
+<figure>
     {{ rendition.img_tag }}
     {% if value.caption %}
-        <p>{{ value.caption }}</p>
+        <figcaption>{{ value.caption }}</figcaption>
     {% endif %}
-</div>
+</figure>
 {% endif %}
