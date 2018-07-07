@@ -45,3 +45,8 @@ class BlogPage(Page):
 
     def get_feed_content(self):
         return self.body
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context.update(self.get_parent().specific.get_feed_context(request))
+        return context

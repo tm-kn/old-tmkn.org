@@ -39,8 +39,11 @@ class PageFeed(RoutablePageMixin):
             children=self.get_feed_items(),
             link=self.relative_url(getattr(request, 'site', None),
                                    request=request),
-            title=f"{settings.WAGTAIL_SITE_NAME} - {self.title}",
+            title=self.get_feed_title(),
         )(request, *args, *kwargs)
+
+    def get_feed_title(self):
+        return f"{settings.WAGTAIL_SITE_NAME} - {self.title}"
 
     @route(r'^rss/$', name='rss_feed')
     def rss_feed(self, request, *args, **kwargs):
@@ -50,17 +53,24 @@ class PageFeed(RoutablePageMixin):
     def atom_feed(self, request, *args, **kwargs):
         return self.base_feed(Atom1Feed, request, *args, **kwargs)
 
-    def get_context(self, request, *args, **kwargs):
-        context = super().get_context(request, *args, **kwargs)
+    def get_feed_context(self, request):
+        context = {}
         base_url = self.relative_url(getattr(request, 'site', None),
                                      request=request)
         context['rss_feed_url'] = (
             base_url + self.reverse_subpage('rss_feed')
         )
 
+        context['rss_feed_title'] = f"{self.get_feed_title()} (RSS)"
         context['atom_feed_url'] = (
             base_url + self.reverse_subpage('atom_feed')
         )
+        context['atom_feed_title'] = f"{self.get_feed_title()} (Atom)"
+        return context
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context.update(self.get_feed_context(request))
         return context
 
     def get_cached_paths(self):
