@@ -7,5 +7,6 @@ register = template.Library()
 def navigation_items(context):
     request = context['request']
     yield request.site.root_page
-    for page in request.site.root_page.get_children().live().public():
+    qs = request.site.root_page.get_children().live().public().in_menu()
+    for page in qs:
         yield page
