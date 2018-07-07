@@ -42,3 +42,6 @@ class BlogPage(Page):
         FieldPanel('first_published_at'),
         StreamFieldPanel('body'),
     ]
+
+    def get_feed_content(self):
+        return self.body

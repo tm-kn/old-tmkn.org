@@ -21,7 +21,7 @@ class PageChildrenFeed(Feed):
         return item.get_url()
 
     def item_description(self, item):
-        return item.body
+        return item.get_feed_content()
 
 
 class PageFeed(RoutablePageMixin):
@@ -39,10 +39,10 @@ class PageFeed(RoutablePageMixin):
             title=f"{settings.WAGTAIL_SITE_NAME} - {self.title}",
         )(request, *args, *kwargs)
 
-    @route(r'^rss/$')
+    @route(r'^rss/$', name='rss_feed')
     def rss_feed(self, request, *args, **kwargs):
         return self.base_feed(Rss201rev2Feed, request, *args, **kwargs)
 
-    @route(r'^atom/$')
+    @route(r'^atom/$', name='atom_feed')
     def atom_feed(self, request, *args, **kwargs):
         return self.base_feed(Atom1Feed, request, *args, **kwargs)
