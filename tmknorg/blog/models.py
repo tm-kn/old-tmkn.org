@@ -7,9 +7,10 @@ from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 
 from tmknorg.core.blocks import BodyBlock
+from tmknorg.core.mixins import PageFeed
 
 
-class BlogIndex(Page):
+class BlogIndex(PageFeed, Page):
     parent_page_types = ['home.HomePage']
     subpage_types = ['blog.BlogPage']
 
