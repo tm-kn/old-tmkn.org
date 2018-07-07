@@ -5,8 +5,8 @@
 {% if rendition %}
 <figure>
     {{ rendition.img_tag }}
-    {% if value.caption %}
-        <figcaption>{{ value.caption }}</figcaption>
+    {% if value.caption or rendition.alt %}
+        <figcaption>{% firstof value.caption rendition.alt %}</figcaption>
     {% endif %}
 </figure>
 {% endif %}

@@ -46,3 +46,16 @@ class PageFeed(RoutablePageMixin):
     @route(r'^atom/$', name='atom_feed')
     def atom_feed(self, request, *args, **kwargs):
         return self.base_feed(Atom1Feed, request, *args, **kwargs)
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        base_url = self.relative_url(getattr(request, 'site', None),
+                                           request=request)
+        context['rss_feed_url'] = (
+            base_url + self.reverse_subpage('rss_feed')
+        )
+
+        context['atom_feed_url'] = (
+            base_url + self.reverse_subpage('atom_feed')
+        )
+        return context
