@@ -3,10 +3,12 @@
 {% image value.image width-800 as rendition %}
 
 {% if rendition %}
-<figure>
-    {{ rendition.img_tag }}
-    {% if value.caption or rendition.alt %}
-        <figcaption>{% firstof value.caption rendition.alt %}</figcaption>
-    {% endif %}
-</figure>
+<p>
+    <figure>
+        {{ rendition.img_tag }}
+        {% if value.caption or rendition.alt %}
+            <figcaption>{% firstof value.caption rendition.alt %}</figcaption>
+        {% endif %}
+    </figure>
+</p>
 {% endif %}
