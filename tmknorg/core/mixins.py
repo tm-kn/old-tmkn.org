@@ -62,3 +62,8 @@ class PageFeed(RoutablePageMixin):
             base_url + self.reverse_subpage('atom_feed')
         )
         return context
+
+    def get_cached_paths(self):
+        yield '/'
+        yield self.reverse_subpage('rss_feed')
+        yield self.reverse_subpage('atom_feed')
