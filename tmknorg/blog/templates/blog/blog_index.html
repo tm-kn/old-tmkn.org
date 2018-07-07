@@ -11,4 +11,7 @@
     </li>
 {% endfor %}
 </ul>
+
+{% include 'core/pagination.html' with objects=blog_pages %}
+
 {% endblock %}
