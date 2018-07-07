@@ -50,7 +50,7 @@ class PageFeed(RoutablePageMixin):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         base_url = self.relative_url(getattr(request, 'site', None),
-                                           request=request)
+                                     request=request)
         context['rss_feed_url'] = (
             base_url + self.reverse_subpage('rss_feed')
         )
