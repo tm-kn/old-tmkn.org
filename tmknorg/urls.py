@@ -18,7 +18,7 @@ from tmknorg.home.views import FaviconView, PGPKeyView, SSHKeyView
 frontendcache = cache_control(
     public=True,
     s_maxage=int(getattr(settings, 'FRONTEND_CACHE_CONTROL_S_MAXAGE',
-                         4 * 60 * 60)),
+                         24 * 60 * 60)),
     stale_while_revalidate=int(getattr(
         settings,
         'FRONTEND_CACHE_CONTROL_STALE_WHILE_REVALIDATE',
