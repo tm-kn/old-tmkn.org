@@ -25,9 +25,8 @@ class BlogIndex(PageFeed, Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        qs = (
-            self.get_children().live().public().order_by('-first_published_at')
-        )
+        qs = BlogPage.objects.live().public().child_of(self) \
+                                             .order_by('-first_published_at')
         paginator = Paginator(qs, 20)
         page = request.GET.get('page', 1)
         context['blog_pages'] = paginator.page(page)

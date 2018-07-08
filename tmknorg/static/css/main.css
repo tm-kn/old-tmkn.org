@@ -15,3 +15,8 @@
     overflow: hidden;
     list-style-type: none;
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+}

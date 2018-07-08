@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'tmknorg.home',
     'tmknorg.blog',
     'tmknorg.images',
+    'tmknorg.photostream',
 ]
 
 
