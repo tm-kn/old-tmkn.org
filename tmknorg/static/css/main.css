@@ -20,3 +20,14 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+.main-footer {
+    padding: 18px;
+    border-top: 1px black solid;
+}
+
+.made-with-wagtail-badge {
+    width: 200px;
+    height: auto;
+    float: right;
+}
