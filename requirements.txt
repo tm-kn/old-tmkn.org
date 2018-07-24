@@ -9,3 +9,4 @@ django-basic-auth-ip-whitelist==0.2.1
 django-referrer-policy==1.0
 boto3==1.7.52
 django-storages==1.6.6
+Pygments==2.2.0

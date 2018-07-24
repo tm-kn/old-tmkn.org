@@ -15,6 +15,7 @@
     <link rel="alternate" type="application/atom+xml" href="{{ atom_feed_url }}" title="{{ atom_feed_title }}">
     {% endif %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pygments.css' %}">
     <title>{% block title %}{% if page %}{% firstof page.seo_title page.title %}{% endif %} | tmkn.org{% endblock %}</title>
 </head>
 <body>
