@@ -184,7 +184,7 @@ if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 SECURE_SSL_REDIRECT = (
-    os.environ.get('SECURE_SSL_REDIRECT', 'false').strip().lower() == 'true'
+    os.environ.get('SECURE_SSL_REDIRECT', 'true').strip().lower() == 'true'
 )
 
 SECURE_BROWSER_XSS_FILTER = (
