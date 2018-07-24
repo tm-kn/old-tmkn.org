@@ -32,9 +32,20 @@
         {% block content %}{% endblock %}
     </main>
     <footer class="main-footer">
-        <a href="https://wagtail.io">
-            <img src="{% static "images/wagtail_badge_black.svg" %}" class="made-with-wagtail-badge" alt="Made with Wagtail badge">
-        </a>
+        <div class="footer-badges">
+            <ul>
+                <li>
+                    <a href="https://wagtail.io">
+                        <img src="{% static "images/wagtail_badge_black.svg" %}" class="made-with-wagtail-badge" alt="Made with Wagtail">
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.djangoproject.com/">
+                        <img src="https://www.djangoproject.com/m/img/badges/djangopowered126x54.gif" alt="Powered by Django">
+                    </a>
+                </li>
+            </ul>
+        </div>
     </footer>
 </body>
 </html>

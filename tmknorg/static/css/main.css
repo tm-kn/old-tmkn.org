@@ -26,8 +26,22 @@ img {
     border-top: 1px black solid;
 }
 
-.made-with-wagtail-badge {
-    width: 200px;
-    height: auto;
+.footer-badges img {
+    width: auto;
+    height: 100%;
+}
+
+.footer-badges {
     float: right;
+}
+
+.footer-badges li {
+    float: left;
+    height: 35px;
+    padding: 5px;
+}
+
+.footer-badges ul {
+    overflow: hidden;
+    list-style-type: none;
 }
