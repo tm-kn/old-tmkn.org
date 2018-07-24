@@ -1,6 +1,16 @@
+body {
+    max-width: 800px;
+    width: 95%;
+}
+
 .primary-navigation {
     font-size: 18px;
     border-bottom: 1px black solid;
+    margin-bottom: 32px;
+}
+
+pre {
+    overflow-x: scroll;
 }
 
 .primary-navigation li {
@@ -22,7 +32,8 @@ img {
 }
 
 .main-footer {
-    padding: 18px;
+    margin-top: 32px;
+    padding: 9px;
     border-top: 1px black solid;
 }
 
