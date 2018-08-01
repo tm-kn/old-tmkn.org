@@ -1,8 +1,11 @@
 from django.conf import settings
 from django.contrib.syndication.views import Feed
+from django.db import models
 from django.utils.feedgenerator import Atom1Feed, Rss201rev2Feed
 
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+from wagtail.images import get_image_model_string
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 class PageChildrenFeed(Feed):
@@ -77,3 +80,15 @@ class PageFeed(RoutablePageMixin):
         yield '/'
         yield self.reverse_subpage('rss_feed')
         yield self.reverse_subpage('atom_feed')
+
+
+class SocialFields(models.Model):
+    feed_image = models.ForeignKey(get_image_model_string(), models.SET_NULL,
+                                   blank=True, null=True, related_name='+')
+
+    promote_panels = [
+        ImageChooserPanel('feed_image'),
+    ]
+
+    class Meta:
+        abstract = True

@@ -12,10 +12,14 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 
+from tmknorg.core.mixins import SocialFields
 
-class PhotoIndex(Page):
+
+class PhotoIndex(SocialFields, Page):
     parent_page_types = ['home.HomePage']
     subpage_types = ['photostream.PhotoPage']
+
+    promote_panels = Page.promote_panels + SocialFields.promote_panels
 
     def serve(self, request, *args, **kwargs):
         try:
@@ -45,9 +49,12 @@ class PhotoPagePhoto(Orderable, ClusterableModel):
     ]
 
 
-class PhotoPage(Page):
+class PhotoPage(SocialFields, Page):
     parent_page_types = ['photostream.PhotoIndex']
     subpage_types = []
+
+    promote_panels = Page.promote_panels + SocialFields.promote_panels
+
     content_panels = Page.content_panels + [
         FieldPanel('first_published_at'),
         InlinePanel('photos', label="Photos", min_num=1),

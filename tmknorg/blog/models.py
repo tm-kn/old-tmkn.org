@@ -7,12 +7,14 @@ from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 
 from tmknorg.core.blocks import BodyBlock
-from tmknorg.core.mixins import PageFeed
+from tmknorg.core.mixins import PageFeed, SocialFields
 
 
-class BlogIndex(PageFeed, Page):
+class BlogIndex(SocialFields, PageFeed, Page):
     parent_page_types = ['home.HomePage']
     subpage_types = ['blog.BlogPage']
+
+    promote_panels = Page.promote_panels + SocialFields.promote_panels
 
     def serve(self, request, *args, **kwargs):
         try:
@@ -33,7 +35,7 @@ class BlogIndex(PageFeed, Page):
         return context
 
 
-class BlogPage(Page):
+class BlogPage(SocialFields, Page):
     parent_page_types = ['blog.BlogIndex']
     subpage_types = []
     body = StreamField(BodyBlock())
@@ -41,6 +43,7 @@ class BlogPage(Page):
         FieldPanel('first_published_at'),
         StreamFieldPanel('body'),
     ]
+    promote_panels = Page.promote_panels + SocialFields.promote_panels
 
     def get_feed_content(self):
         return self.body
