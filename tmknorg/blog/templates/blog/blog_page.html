@@ -2,6 +2,10 @@
 
 {% load wagtailcore_tags %}
 
+{% block header %}
+<meta property="og:type" content="article">
+{% endblock %}
+
 {% block content %}
 <div>
     <a href="{% pageurl page.get_parent %}">&laquo; blog index</a>

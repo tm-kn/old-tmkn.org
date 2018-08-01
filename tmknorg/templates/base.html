@@ -19,13 +19,23 @@
     <title>{% block title %}{% if page %}{% firstof page.seo_title page.title %}{% endif %} | tmkn.org{% endblock %}</title>
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@sgttomtom">
+    <meta name="twitter:creator" content="@sgttomtom">
     <meta name="twitter:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %} | tmkn.org">
     {% if page.search_description %}
     <meta name="twitter:description" content="{{ page.search_description }}">
+    <meta property="og:description" content="{{ page.search_description }}" />
     {% endif %}
     {% if page.feed_image %}
-        <meta name="twitter:image:src" content="{% if page.feed_image %}{% image page.feed_image width-600 as img %}{{ img.url }}{% endif %}" />
+    {% image page.feed_image width-600 as feed_image %}
+    <meta name="twitter:image:src" content="{{ feed_image.url }}" />
+    <meta name="twitter:image:alt" content="{{ feed_image.alt }}" />
+    <meta property="og:image:url" content="{{ feed_image.url }}">
     {% endif %}
+    {% if page.full_url %}
+    <meta property="og:url" content="{{ page.full_url }}">
+    {% endif %}
+    <meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %} | tmkn.org">
+    {% block header %}{% endblock %}
 </head>
 <body>
     <nav aria-label="primary" class="primary-navigation">
