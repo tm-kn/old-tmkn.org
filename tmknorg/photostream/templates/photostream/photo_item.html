@@ -1,0 +1,30 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<article>
+    <header>
+        <h1>
+            <a href="{% pageurl photo_page %}">
+                {{ photo_page.title }}
+            </a>
+        </h1>
+        <p>
+            <time pubdate datetime="{{ page.first_published_at.date.isoformat }}">
+                {{ page.first_published_at.date|date }}
+            </time>
+        </p>
+    </header>
+    <div>
+    {% if photo_page.photos_qs %}
+    {% for photo in photo_page.photos_qs %}
+        {% image photo.photo width-1200 as rendition %}
+        {% image photo.photo max-2560x1440 as original_rendition %}
+        <a href="{{ original_rendition.url }}" target="_blank" rel="noopener noreferrer">
+            <figure>
+                {{ rendition.img_tag }}
+                <figcaption>{{ rendition.alt }}</figcaption>
+            </figure>
+        </a>
+    {% endfor %}
+    {% endif %}
+    </div>
+</article>

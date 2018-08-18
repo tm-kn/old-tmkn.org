@@ -6,28 +6,7 @@
 <h1>{{ page.title }}</h1>
 {% if photo_pages %}
 {% for photo_page in photo_pages %}
-    <article>
-        <a href="{% pageurl photo_page %}">
-            <h1>{{ photo_page.title }}</h1>
-        </a>
-        <p>
-            <time pubdate datetime="{{ photo_page.first_published_at.date.isoformat }}">
-                {{ photo_page.first_published_at.date|date }}
-            </time>
-        </p>
-        {% if photo_page.photos_qs %}
-        {% for photo in photo_page.photos_qs %}
-            {% image photo.photo width-1200 as rendition %}
-            {% image photo.photo original as original_rendition %}
-            <a href="{{ original_rendition.url }}">
-                <figure>
-                    {{ rendition.img_tag }}
-                    <figcaption>{{ rendition.alt }}</figcaption>
-                </figure>
-            </a>
-        {% endfor %}
-        {% endif %}
-    </article>
+{% include "photostream/photo_item.html" with photo_page=photo_page %}
 {% endfor %}
 {% endif %}
 {% endblock %}

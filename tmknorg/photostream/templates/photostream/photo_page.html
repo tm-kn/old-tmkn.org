@@ -7,28 +7,7 @@
 <a href="{% pageurl page.get_parent %}">&laquo; photos index</a>
 
 <h1>{{ page.title }}</h1>
-<article>
-    <header>
-        <h1>{{ page.title }}</h1>
-        <p>
-            <time pubdate datetime="{{ page.first_published_at.date.isoformat }}">
-                {{ page.first_published_at.date|date }}
-            </time>
-        </p>
-    </header>
-    <div>
-    {% if page.photos_qs %}
-    {% for photo in page.photos_qs %}
-        {% image photo.photo width-1200 as rendition %}
-        {% image photo.photo original as original_rendition %}
-        <a href="{{ original_rendition.url }}">
-            <figure>
-                {{ rendition.img_tag }}
-                <figcaption>{{ rendition.alt }}</figcaption>
-            </figure>
-        </a>
-    {% endfor %}
-    {% endif %}
-    </div>
-</article>
+
+{% include "photostream/photo_item.html" with photo_page=page %}
+
 {% endblock %}
