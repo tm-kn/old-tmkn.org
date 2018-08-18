@@ -1,4 +1,4 @@
-body {
+.wrapper {
     max-width: 800px;
     width: 95%;
 }
@@ -55,4 +55,9 @@ img {
 .footer-badges ul {
     overflow: hidden;
     list-style-type: none;
+}
+
+.photostream_image {
+    max-height: 768px;
+    width: auto;
 }

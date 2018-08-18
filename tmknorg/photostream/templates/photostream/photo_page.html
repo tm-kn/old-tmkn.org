@@ -10,4 +10,6 @@
 
 {% include "photostream/photo_item.html" with photo_page=page %}
 
+<a href="{% pageurl page.get_parent %}">&laquo; photos index</a>
+
 {% endblock %}

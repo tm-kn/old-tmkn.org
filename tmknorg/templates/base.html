@@ -38,7 +38,7 @@
     {% block header %}{% endblock %}
 </head>
 <body>
-    <nav aria-label="primary" class="primary-navigation">
+    <nav aria-label="primary" class="primary-navigation wrapper">
         <ul>
             <li><a href="/">tmkn.org</a></li>
             {% navigation_items as navigation_items %}
@@ -50,7 +50,7 @@
     <main>
         {% block content %}{% endblock %}
     </main>
-    <footer class="main-footer">
+    <footer class="main-footer wrapper">
         <div class="footer-badges">
             <ul>
                 <li>

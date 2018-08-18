@@ -5,7 +5,10 @@ from wagtail.images.models import (
 
 
 class CustomImage(AbstractImage):
-    admin_form_fields = WagtailImage.admin_form_fields
+    alternative_text = models.CharField(max_length=255, blank=True)
+    admin_form_fields = WagtailImage.admin_form_fields + (
+        'alternative_text',
+    )
 
 
 class CustomRendition(AbstractRendition):
@@ -16,3 +19,11 @@ class CustomRendition(AbstractRendition):
         unique_together = (
             ('image', 'filter_spec', 'focal_point_key'),
         )
+
+    @property
+    def alt(self):
+        return self.image.alternative_text or self.image.title
+
+    @property
+    def title(self):
+        return self.image.title
