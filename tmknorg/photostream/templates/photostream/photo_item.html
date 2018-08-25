@@ -16,22 +16,25 @@
     <div>
     {% if photo_page.photos_qs %}
     {% for photo in photo_page.photos_qs %}
-        {% image photo.photo width-800 jpegquality-85 as rendition800w %}
+        {% image photo.photo width-2560 jpegquality-85 as rendition2560w %}
         {% image photo.photo width-1200 jpegquality-85 as rendition1200w %}
+        {% image photo.photo width-800 jpegquality-85 as rendition800w %}
         {% image photo.photo width-320 jpegquality-85 as rendition320w %}
-        <a href="{{ rendition1200w.url }}" target="_blank" rel="noopener noreferrer">
+        <a href="{{ rendition2560w.url }}" target="_blank" rel="noopener noreferrer">
             <figure>
                 <img
                     srcset="{{ rendition320w.url }} 320w,
                             {{ rendition800w.url }} 800w,
-                            {{ rendition1200w.url }} 1200w"
-                    src="{{ rendition1200w.url }}"
+                            {{ rendition1200w.url }} 1200w,
+                            {{ rendition2560w.url }} 2560w"
+                    src="{{ rendition2560w.url }}"
                     sizes="(max-width: 320px) 280px,
                            (max-width: 800px) 760px,
-                           1200px"
-                    alt="{{ rendition1200w.alt }}"
+                           (max-width: 1200px) 1160px,
+                           2560px"
+                    alt="{{ rendition2560w.alt }}"
                     class="photostream_image">
-                <figcaption>{{ rendition1200w.title }}</figcaption>
+                <figcaption>{{ rendition2560w.title }}</figcaption>
             </figure>
         </a>
     {% endfor %}
